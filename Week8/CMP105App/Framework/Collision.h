@@ -15,5 +15,7 @@ public:
 	static bool checkBoundingBox(GameObject* s1, sf::Vector2i s2);
 	// Check bounding circle collision. Returns true if collision occurs.
 	static bool checkBoundingCircle(GameObject* sp1, GameObject* sp2);
+	// Check AABB v Circle collision. Returns true if collision occurs.
+	static bool checkCircleBox(GameObject* box, GameObject* circle);
 
 };

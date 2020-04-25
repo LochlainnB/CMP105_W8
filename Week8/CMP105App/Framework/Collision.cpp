@@ -1,4 +1,5 @@
 #include "Collision.h"
+#include <iostream>
 
 // Check AABB for collision. Returns true if collision occurs.
 bool Collision::checkBoundingBox(GameObject* s1, GameObject* s2)
@@ -28,6 +29,28 @@ bool Collision::checkBoundingBox(GameObject* s1, sf::Vector2i s2)
 		return false;
 
 	return true;
+}
+
+// Check AABB v Circle collision. Returns true if collision occurs.
+bool Collision::checkCircleBox(GameObject* box, GameObject* circle) {
+	sf::Vector2f closest;
+	closest = circle->getPosition() + circle->getSize() / 2.0f;
+
+	if (box->getPosition().x + box->getSize().x < closest.x) {
+		closest.x = box->getPosition().x + box->getSize().x;
+	}
+	else if (box->getPosition().x > closest.x) {
+		closest.x = box->getPosition().x;
+	}
+	if (box->getPosition().y + box->getSize().y < closest.y) {
+		closest.y = box->getPosition().y + box->getSize().y;
+	}
+	else if (box->getPosition().y > closest.y) {
+		closest.y = box->getPosition().y;
+	}
+	
+	std::cout << pow(circle->getPosition().x - closest.x, 2) + pow(circle->getPosition().y - closest.y, 2) << ", " << pow(circle->getSize().x / 2, 2) << std::endl;
+	return pow(circle->getPosition().x + circle->getSize().x / 2 - closest.x, 2) + pow(circle->getPosition().y + circle->getSize().y / 2 - closest.y, 2) < pow(circle->getSize().x / 2, 2);
 }
 
 // Check bounding circle collision. Returns true if collision occurs.

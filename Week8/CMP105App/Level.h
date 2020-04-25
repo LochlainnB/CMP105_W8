@@ -2,6 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "Framework/Input.h"
+#include "BouncingBall.h"
+#include "Paddle.h"
+#include "Ball.h"
 #include <string>
 #include <iostream>
 
@@ -23,4 +26,9 @@ private:
 	// Default variables for level class.
 	sf::RenderWindow* window;
 	Input* input;
+	BouncingBall ball1;
+	BouncingBall ball2;
+	Paddle player1;
+	Paddle player2;
+	Ball ball;
 };
